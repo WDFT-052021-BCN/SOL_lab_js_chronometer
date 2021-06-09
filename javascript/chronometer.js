@@ -1,12 +1,19 @@
 class Chronometer {
   constructor() {
-    (this.currentTime = 0), (this.intervalId = null);
+    this.currentTime = 0, 
+    this.intervalId = null;
   }
 
   start(callback) {
     //!! Remember to save the interval execution in the intervalId property
     this.intervalId = setInterval(() => {
+      
+      //!!If there is a callback, execute it, it it isn't the code will ignore the execution
+      if(callback) callback()
       this.currentTime += 1;
+      //this.currentTime++
+
+      //this.currentTime++
     }, 1000);
   }
 
@@ -19,14 +26,17 @@ class Chronometer {
   }
 
   computeTwoDigitNumber(value) {
-    if (value < 10) {
-      return '0' + value.toString();
-    } else {
-      return value.toString();
-    }
+    
+    // if (value < 10) {
+
+    //   return '0' + String(value);
+    
+    // } else {
+    //   return value.toString();
+    // }
 
     //One line option
-    //return ('0' + value).slice(-2);
+    return ('0' + value).slice(-2);
   }
 
   stop() {
@@ -38,6 +48,7 @@ class Chronometer {
   }
 
   split() {
+
     //Remember you can use a function within a function and pass the return as an argument for another function
     const minutes = this.computeTwoDigitNumber(this.getMinutes());
     const seconds = this.computeTwoDigitNumber(this.getSeconds());
@@ -50,6 +61,8 @@ class Chronometer {
     */
   }
 }
+
+
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
